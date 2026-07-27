@@ -1,0 +1,5 @@
+===================================
+== import flat files to database ==
+===================================
+1- right click on 'Databases' => new database => 'DataWarehouseAnalytics'
+2- right click on 'DataWarehouseAnalytics' => Tasks => Import Flat File => next => browse => select the CSV file [do not forget to allow nulls] => next => finish 
