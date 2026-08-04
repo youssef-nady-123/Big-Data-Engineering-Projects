@@ -1,0 +1,16 @@
+# create directory at the home directory  
+hdfs dfs -mkdir /data
+
+
+# veryify that the directory was created sucessfully
+hdfs dfs -ls /
+
+
+# upload data to hdfs 
+hdfs dfs -put gold.dim_customers.csv
+hdfs dfs -put gold.dim_products.csv
+hdfs dfs -put gold.fact_sales.csv 
+
+
+# verify that the data was uploaded successfully
+hdfs dfs -ls /data
