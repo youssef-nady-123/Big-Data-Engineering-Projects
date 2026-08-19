@@ -1,0 +1,634 @@
+[
+  {
+    "user_id": 1,
+    "name": "Ahmed Ali",
+    "age": 25,
+    "gender": "Male",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "ahmed.ali@example.com",
+    "phone": "+201001111111",
+    "salary": 8500,
+    "department": "Data Engineering",
+    "join_date": "2023-01-15",
+    "skills": ["Python", "SQL", "Spark"],
+    "address": {
+      "street": "Nile Street",
+      "area": "Maadi",
+      "postal_code": "11728"
+    },
+    "orders": [
+      {
+        "order_id": 1001,
+        "product": "Laptop",
+        "quantity": 1,
+        "price": 25000
+      },
+      {
+        "order_id": 1002,
+        "product": "Mouse",
+        "quantity": 2,
+        "price": 500
+      }
+    ]
+  },
+  {
+    "user_id": 2,
+    "name": "Youssef Hassan",
+    "age": 28,
+    "gender": "Male",
+    "city": "Giza",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "youssef.hassan@example.com",
+    "phone": "+201002222222",
+    "salary": 12000,
+    "department": "Data Engineering",
+    "join_date": "2022-05-20",
+    "skills": ["Python", "Kafka", "Hadoop", "Spark"],
+    "address": {
+      "street": "Pyramids Road",
+      "area": "Haram",
+      "postal_code": "12511"
+    },
+    "orders": [
+      {
+        "order_id": 1003,
+        "product": "Keyboard",
+        "quantity": 1,
+        "price": 1200
+      },
+      {
+        "order_id": 1004,
+        "product": "Monitor",
+        "quantity": 2,
+        "price": 7000
+      }
+    ]
+  },
+  {
+    "user_id": 3,
+    "name": "Mona Mohamed",
+    "age": 22,
+    "gender": "Female",
+    "city": "Alexandria",
+    "country": "Egypt",
+    "is_active": false,
+    "email": "mona.mohamed@example.com",
+    "phone": "+201003333333",
+    "salary": 6500,
+    "department": "Marketing",
+    "join_date": "2024-02-10",
+    "skills": ["SQL", "Excel", "Power BI"],
+    "address": {
+      "street": "Corniche Road",
+      "area": "Stanley",
+      "postal_code": "21500"
+    },
+    "orders": [
+      {
+        "order_id": 1005,
+        "product": "Headphones",
+        "quantity": 1,
+        "price": 1800
+      }
+    ]
+  },
+  {
+    "user_id": 4,
+    "name": "Omar Khaled",
+    "age": 31,
+    "gender": "Male",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "omar.khaled@example.com",
+    "phone": "+201004444444",
+    "salary": 15000,
+    "department": "Data Engineering",
+    "join_date": "2021-09-01",
+    "skills": ["Spark", "Scala", "Kafka", "Flink"],
+    "address": {
+      "street": "Tahrir Street",
+      "area": "Downtown",
+      "postal_code": "11511"
+    },
+    "orders": [
+      {
+        "order_id": 1006,
+        "product": "Laptop",
+        "quantity": 1,
+        "price": 30000
+      },
+      {
+        "order_id": 1007,
+        "product": "SSD",
+        "quantity": 2,
+        "price": 3500
+      },
+      {
+        "order_id": 1008,
+        "product": "USB Cable",
+        "quantity": 5,
+        "price": 250
+      }
+    ]
+  },
+  {
+    "user_id": 5,
+    "name": "Sara Ahmed",
+    "age": 27,
+    "gender": "Female",
+    "city": "Giza",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "sara.ahmed@example.com",
+    "phone": "+201005555555",
+    "salary": 9500,
+    "department": "Data Analysis",
+    "join_date": "2023-07-18",
+    "skills": ["Python", "Pandas", "SQL", "Power BI"],
+    "address": {
+      "street": "Dokki Street",
+      "area": "Dokki",
+      "postal_code": "12611"
+    },
+    "orders": [
+      {
+        "order_id": 1009,
+        "product": "Tablet",
+        "quantity": 1,
+        "price": 12000
+      },
+      {
+        "order_id": 1010,
+        "product": "Keyboard",
+        "quantity": 1,
+        "price": 1000
+      }
+    ]
+  },
+  {
+    "user_id": 6,
+    "name": "Mahmoud Adel",
+    "age": 35,
+    "gender": "Male",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": false,
+    "email": "mahmoud.adel@example.com",
+    "phone": "+201006666666",
+    "salary": 11000,
+    "department": "IT",
+    "join_date": "2020-11-12",
+    "skills": ["Hadoop", "Hive", "Spark"],
+    "address": {
+      "street": "Nasr City Street",
+      "area": "Nasr City",
+      "postal_code": "11765"
+    },
+    "orders": [
+      {
+        "order_id": 1011,
+        "product": "Router",
+        "quantity": 1,
+        "price": 2500
+      }
+    ]
+  },
+  {
+    "user_id": 7,
+    "name": "Nour Ibrahim",
+    "age": 24,
+    "gender": "Female",
+    "city": "Alexandria",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "nour.ibrahim@example.com",
+    "phone": "+201007777777",
+    "salary": 7800,
+    "department": "Data Analysis",
+    "join_date": "2024-01-05",
+    "skills": ["Python", "Spark", "Airflow"],
+    "address": {
+      "street": "Sidi Gaber Street",
+      "area": "Sidi Gaber",
+      "postal_code": "21523"
+    },
+    "orders": [
+      {
+        "order_id": 1012,
+        "product": "Smartphone",
+        "quantity": 1,
+        "price": 18000
+      },
+      {
+        "order_id": 1013,
+        "product": "Power Bank",
+        "quantity": 2,
+        "price": 900
+      }
+    ]
+  },
+  {
+    "user_id": 8,
+    "name": "Karim Samir",
+    "age": 29,
+    "gender": "Male",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "karim.samir@example.com",
+    "phone": "+201008888888",
+    "salary": 13500,
+    "department": "Software Engineering",
+    "join_date": "2022-03-14",
+    "skills": ["Java", "Kafka", "Flink", "Docker"],
+    "address": {
+      "street": "Heliopolis Street",
+      "area": "Heliopolis",
+      "postal_code": "11341"
+    },
+    "orders": [
+      {
+        "order_id": 1014,
+        "product": "Monitor",
+        "quantity": 2,
+        "price": 6500
+      }
+    ]
+  },
+  {
+    "user_id": 9,
+    "name": "Hana Mostafa",
+    "age": 26,
+    "gender": "Female",
+    "city": "Giza",
+    "country": "Egypt",
+    "is_active": false,
+    "email": "hana.mostafa@example.com",
+    "phone": "+201009999999",
+    "salary": 7200,
+    "department": "Business Intelligence",
+    "join_date": "2023-10-22",
+    "skills": ["SQL", "Power BI", "Excel"],
+    "address": {
+      "street": "Faisal Street",
+      "area": "Faisal",
+      "postal_code": "12511"
+    },
+    "orders": [
+      {
+        "order_id": 1015,
+        "product": "Laptop Bag",
+        "quantity": 1,
+        "price": 800
+      }
+    ]
+  },
+  {
+    "user_id": 10,
+    "name": "Tarek Emad",
+    "age": 33,
+    "gender": "Male",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "tarek.emad@example.com",
+    "phone": "+201010101010",
+    "salary": 16000,
+    "department": "Data Engineering",
+    "join_date": "2020-06-30",
+    "skills": ["Python", "Spark", "Kafka", "Airflow", "AWS"],
+    "address": {
+      "street": "Zamalek Street",
+      "area": "Zamalek",
+      "postal_code": "11211"
+    },
+    "orders": [
+      {
+        "order_id": 1016,
+        "product": "Laptop",
+        "quantity": 1,
+        "price": 35000
+      },
+      {
+        "order_id": 1017,
+        "product": "Monitor",
+        "quantity": 3,
+        "price": 6000
+      },
+      {
+        "order_id": 1018,
+        "product": "Keyboard",
+        "quantity": 2,
+        "price": 1200
+      }
+    ]
+  },
+  {
+    "user_id": 11,
+    "name": "Ali Hassan",
+    "age": 30,
+    "gender": "Male",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "ali.hassan@example.com",
+    "phone": "+201011111111",
+    "salary": 10500,
+    "department": "IT",
+    "join_date": "2022-08-11",
+    "skills": ["Linux", "Docker", "Kubernetes"],
+    "address": {
+      "street": "Abbassia Street",
+      "area": "Abbassia",
+      "postal_code": "11381"
+    },
+    "orders": [
+      {
+        "order_id": 1019,
+        "product": "Server",
+        "quantity": 1,
+        "price": 45000
+      }
+    ]
+  },
+  {
+    "user_id": 12,
+    "name": "Salma Ahmed",
+    "age": 23,
+    "gender": "Female",
+    "city": "Alexandria",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "salma.ahmed@example.com",
+    "phone": "+201012121212",
+    "salary": 6800,
+    "department": "Marketing",
+    "join_date": "2024-04-17",
+    "skills": ["Excel", "SQL", "Power BI"],
+    "address": {
+      "street": "Smouha Street",
+      "area": "Smouha",
+      "postal_code": "21615"
+    },
+    "orders": [
+      {
+        "order_id": 1020,
+        "product": "Tablet",
+        "quantity": 1,
+        "price": 11000
+      }
+    ]
+  },
+  {
+    "user_id": 13,
+    "name": "Hossam Fathy",
+    "age": 36,
+    "gender": "Male",
+    "city": "Giza",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "hossam.fathy@example.com",
+    "phone": "+201013131313",
+    "salary": 14500,
+    "department": "Data Engineering",
+    "join_date": "2019-12-01",
+    "skills": ["Python", "Spark", "Hadoop", "Hive"],
+    "address": {
+      "street": "October Street",
+      "area": "6th of October",
+      "postal_code": "12566"
+    },
+    "orders": [
+      {
+        "order_id": 1021,
+        "product": "Laptop",
+        "quantity": 2,
+        "price": 28000
+      },
+      {
+        "order_id": 1022,
+        "product": "SSD",
+        "quantity": 3,
+        "price": 3000
+      }
+    ]
+  },
+  {
+    "user_id": 14,
+    "name": "Dina Sameh",
+    "age": 28,
+    "gender": "Female",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": false,
+    "email": "dina.sameh@example.com",
+    "phone": "+201014141414",
+    "salary": 8200,
+    "department": "HR",
+    "join_date": "2023-05-09",
+    "skills": ["Excel", "SQL"],
+    "address": {
+      "street": "Shorouk Street",
+      "area": "El Shorouk",
+      "postal_code": "11837"
+    },
+    "orders": [
+      {
+        "order_id": 1023,
+        "product": "Headphones",
+        "quantity": 2,
+        "price": 1600
+      }
+    ]
+  },
+  {
+    "user_id": 15,
+    "name": "Mostafa Nabil",
+    "age": 32,
+    "gender": "Male",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "mostafa.nabil@example.com",
+    "phone": "+201015151515",
+    "salary": 13000,
+    "department": "Software Engineering",
+    "join_date": "2021-02-25",
+    "skills": ["Python", "Django", "Docker", "Git"],
+    "address": {
+      "street": "Mokattam Street",
+      "area": "Mokattam",
+      "postal_code": "11571"
+    },
+    "orders": [
+      {
+        "order_id": 1024,
+        "product": "Mechanical Keyboard",
+        "quantity": 1,
+        "price": 3500
+      },
+      {
+        "order_id": 1025,
+        "product": "Mouse",
+        "quantity": 1,
+        "price": 700
+      }
+    ]
+  },
+  {
+    "user_id": 16,
+    "name": "Reem Adel",
+    "age": 25,
+    "gender": "Female",
+    "city": "Giza",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "reem.adel@example.com",
+    "phone": "+201016161616",
+    "salary": 7600,
+    "department": "Data Analysis",
+    "join_date": "2024-06-12",
+    "skills": ["Python", "Pandas", "NumPy"],
+    "address": {
+      "street": "Sheikh Zayed Street",
+      "area": "Sheikh Zayed",
+      "postal_code": "12588"
+    },
+    "orders": [
+      {
+        "order_id": 1026,
+        "product": "Laptop",
+        "quantity": 1,
+        "price": 22000
+      }
+    ]
+  },
+  {
+    "user_id": 17,
+    "name": "Khaled Mahmoud",
+    "age": 38,
+    "gender": "Male",
+    "city": "Alexandria",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "khaled.mahmoud@example.com",
+    "phone": "+201017171717",
+    "salary": 17000,
+    "department": "Data Engineering",
+    "join_date": "2018-07-19",
+    "skills": ["Spark", "Scala", "Kafka", "AWS", "Docker"],
+    "address": {
+      "street": "Miami Street",
+      "area": "Miami",
+      "postal_code": "21611"
+    },
+    "orders": [
+      {
+        "order_id": 1027,
+        "product": "Server",
+        "quantity": 2,
+        "price": 50000
+      },
+      {
+        "order_id": 1028,
+        "product": "SSD",
+        "quantity": 5,
+        "price": 3200
+      }
+    ]
+  },
+  {
+    "user_id": 18,
+    "name": "Aya Mohamed",
+    "age": 21,
+    "gender": "Female",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "aya.mohamed@example.com",
+    "phone": "+201018181818",
+    "salary": 6000,
+    "department": "Marketing",
+    "join_date": "2025-01-10",
+    "skills": ["Excel", "Power BI", "SQL"],
+    "address": {
+      "street": "Garden City Street",
+      "area": "Garden City",
+      "postal_code": "11519"
+    },
+    "orders": [
+      {
+        "order_id": 1029,
+        "product": "Tablet",
+        "quantity": 1,
+        "price": 9500
+      }
+    ]
+  },
+  {
+    "user_id": 19,
+    "name": "Amr Sherif",
+    "age": 34,
+    "gender": "Male",
+    "city": "Giza",
+    "country": "Egypt",
+    "is_active": false,
+    "email": "amr.sherif@example.com",
+    "phone": "+201019191919",
+    "salary": 12500,
+    "department": "IT",
+    "join_date": "2021-11-08",
+    "skills": ["Linux", "Hadoop", "Hive", "Docker"],
+    "address": {
+      "street": "Agouza Street",
+      "area": "Agouza",
+      "postal_code": "12654"
+    },
+    "orders": [
+      {
+        "order_id": 1030,
+        "product": "Router",
+        "quantity": 2,
+        "price": 3000
+      }
+    ]
+  },
+  {
+    "user_id": 20,
+    "name": "Laila Hassan",
+    "age": 29,
+    "gender": "Female",
+    "city": "Cairo",
+    "country": "Egypt",
+    "is_active": true,
+    "email": "laila.hassan@example.com",
+    "phone": "+201020202020",
+    "salary": 9800,
+    "department": "Business Intelligence",
+    "join_date": "2022-10-15",
+    "skills": ["SQL", "Power BI", "Tableau", "Excel"],
+    "address": {
+      "street": "Nasr City Street",
+      "area": "Nasr City",
+      "postal_code": "11765"
+    },
+    "orders": [
+      {
+        "order_id": 1031,
+        "product": "Monitor",
+        "quantity": 1,
+        "price": 7500
+      },
+      {
+        "order_id": 1032,
+        "product": "Keyboard",
+        "quantity": 1,
+        "price": 1100
+      }
+    ]
+  }
+]

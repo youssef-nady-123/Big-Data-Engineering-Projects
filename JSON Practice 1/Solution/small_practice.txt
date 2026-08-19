@@ -1,0 +1,488 @@
+# ============================================================
+# Task 1: Parse basic JSON strings and extract id, name, age.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","age":25}',),
+    ('{"id":102,"name":"Youssef","age":28}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("age", IntegerType())
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select("data.*").show(truncate=False)
+
+
+# ============================================================
+# Task 2: Parse nested JSON and extract city and country.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","address":{"city":"Cairo","country":"Egypt"}}',),
+    ('{"id":102,"name":"Youssef","address":{"city":"Giza","country":"Egypt"}}',)
+], ["json_string"])
+
+address_schema = StructType([
+    StructField("city", StringType()),
+    StructField("country", StringType())
+])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("address", address_schema)
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select(
+    "data.id",
+    "data.name",
+    "data.address.city",
+    "data.address.country"
+).show(truncate=False)
+
+
+# ============================================================
+# Task 3: Parse JSON containing an array of skills.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","skills":["Python","SQL","Spark"]}',),
+    ('{"id":102,"name":"Youssef","skills":["Python","Kafka","Spark"]}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("skills", ArrayType(StringType()))
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select("data.*").show(truncate=False)
+
+
+# ============================================================
+# Task 4: Parse JSON containing an array of orders and explode it.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","orders":[{"order_id":1,"product":"Laptop","quantity":1,"price":1000},{"order_id":2,"product":"Mouse","quantity":2,"price":50}]}',),
+    ('{"id":102,"name":"Youssef","orders":[{"order_id":3,"product":"Keyboard","quantity":1,"price":100}]}',)
+], ["json_string"])
+
+order_schema = StructType([
+    StructField("order_id", IntegerType()),
+    StructField("product", StringType()),
+    StructField("quantity", IntegerType()),
+    StructField("price", IntegerType())
+])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("orders", ArrayType(order_schema))
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+orders_df = parsed_df.select(
+    "data.id",
+    "data.name",
+    explode("data.orders").alias("order")
+)
+
+orders_df.select(
+    "id",
+    "name",
+    "order.order_id",
+    "order.product",
+    "order.quantity",
+    "order.price"
+).show(truncate=False)
+
+
+# ============================================================
+# Task 5: Calculate total spending for each customer.
+# ============================================================
+
+orders_df.groupBy(
+    "id",
+    "name"
+).agg(
+    sum(
+        col("order.quantity") * col("order.price")
+    ).alias("total_spending")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 6: Parse JSON and filter users whose age is greater than 25.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","age":25}',),
+    ('{"id":102,"name":"Youssef","age":28}',),
+    ('{"id":103,"name":"Mohamed","age":30}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("age", IntegerType())
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select("data.*") \
+    .filter(col("data.age") > 25) \
+    .show(truncate=False)
+
+
+# ============================================================
+# Task 7: Parse JSON and calculate a new column from JSON fields.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","price":1000,"quantity":2}',),
+    ('{"id":102,"name":"Youssef","price":500,"quantity":3}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("price", IntegerType()),
+    StructField("quantity", IntegerType())
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select(
+    "data.*"
+).withColumn(
+    "total",
+    col("price") * col("quantity")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 8: Parse JSON containing a nested address and create a full address.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","address":{"street":"Tahrir","city":"Cairo","country":"Egypt"}}',),
+    ('{"id":102,"name":"Youssef","address":{"street":"Faisal","city":"Giza","country":"Egypt"}}',)
+], ["json_string"])
+
+address_schema = StructType([
+    StructField("street", StringType()),
+    StructField("city", StringType()),
+    StructField("country", StringType())
+])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("address", address_schema)
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select(
+    "data.id",
+    "data.name",
+    concat_ws(
+        ", ",
+        "data.address.street",
+        "data.address.city",
+        "data.address.country"
+    ).alias("full_address")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 9: Parse JSON containing an array and find the number of elements.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","skills":["Python","SQL","Spark"]}',),
+    ('{"id":102,"name":"Youssef","skills":["Python","Kafka"]}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("skills", ArrayType(StringType()))
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select(
+    "data.id",
+    "data.name",
+    "data.skills",
+    size("data.skills").alias("number_of_skills")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 10: Parse JSON and check whether a user has a specific skill.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","skills":["Python","SQL","Spark"]}',),
+    ('{"id":102,"name":"Youssef","skills":["Java","Kafka"]}',),
+    ('{"id":103,"name":"Mohamed","skills":["Python","Spark"]}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("skills", ArrayType(StringType()))
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select(
+    "data.*"
+).filter(
+    array_contains(col("skills"), "Spark")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 11: Parse JSON containing an array of orders and calculate
+# the total spending for every order.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","orders":[{"order_id":1,"product":"Laptop","quantity":2,"price":1000},{"order_id":2,"product":"Mouse","quantity":3,"price":50}]}',),
+    ('{"id":102,"name":"Youssef","orders":[{"order_id":3,"product":"Keyboard","quantity":2,"price":100}]}',)
+], ["json_string"])
+
+order_schema = StructType([
+    StructField("order_id", IntegerType()),
+    StructField("product", StringType()),
+    StructField("quantity", IntegerType()),
+    StructField("price", IntegerType())
+])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("orders", ArrayType(order_schema))
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+orders_df = parsed_df.select(
+    "data.id",
+    "data.name",
+    explode("data.orders").alias("order")
+)
+
+orders_df.select(
+    "id",
+    "name",
+    "order.order_id",
+    "order.product",
+    "order.quantity",
+    "order.price",
+    (
+        col("order.quantity") * col("order.price")
+    ).alias("total")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 12: Parse JSON containing orders and find the most expensive order.
+# ============================================================
+
+orders_df.select(
+    "id",
+    "name",
+    "order.order_id",
+    "order.product",
+    "order.quantity",
+    "order.price",
+    (
+        col("order.quantity") * col("order.price")
+    ).alias("total")
+).orderBy(
+    col("total").desc()
+).show(truncate=False)
+
+
+# ============================================================
+# Task 13: Parse JSON containing orders and find total spending per user.
+# ============================================================
+
+orders_df.groupBy(
+    "id",
+    "name"
+).agg(
+    sum(
+        col("order.quantity") * col("order.price")
+    ).alias("total_spending")
+).orderBy(
+    col("total_spending").desc()
+).show(truncate=False)
+
+
+# ============================================================
+# Task 14: Parse JSON containing orders and find users
+# who spent more than 1000.
+# ============================================================
+
+orders_df.groupBy(
+    "id",
+    "name"
+).agg(
+    sum(
+        col("order.quantity") * col("order.price")
+    ).alias("total_spending")
+).filter(
+    col("total_spending") > 1000
+).show(truncate=False)
+
+
+# ============================================================
+# Task 15: Parse JSON containing an array of products and
+# explode the array into separate rows.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","products":["Laptop","Mouse","Keyboard"]}',),
+    ('{"id":102,"name":"Youssef","products":["Monitor","Mouse"]}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType()),
+    StructField("name", StringType()),
+    StructField("products", ArrayType(StringType()))
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select(
+    "data.id",
+    "data.name",
+    explode("data.products").alias("product")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 16: Parse JSON with nullable fields and handle missing values.
+# ============================================================
+
+json_df = spark.createDataFrame([
+    ('{"id":101,"name":"Ahmed","age":25}',),
+    ('{"id":102,"name":"Youssef"}',),
+    ('{"id":103,"name":"Mohamed","age":30}',)
+], ["json_string"])
+
+schema = StructType([
+    StructField("id", IntegerType(), True),
+    StructField("name", StringType(), True),
+    StructField("age", IntegerType(), True)
+])
+
+parsed_df = json_df.withColumn(
+    "data",
+    from_json(col("json_string"), schema)
+)
+
+parsed_df.select(
+    "data.*"
+).fillna(
+    {"age": 0}
+).show(truncate=False)
+
+
+# ============================================================
+# Task 17: Parse JSON and rename the extracted fields.
+# ============================================================
+
+parsed_df.select(
+    col("data.id").alias("user_id"),
+    col("data.name").alias("user_name"),
+    col("data.age").alias("user_age")
+).show(truncate=False)
+
+
+# ============================================================
+# Task 18: Parse JSON and sort users by age descending.
+# ============================================================
+
+parsed_df.select(
+    "data.*"
+).orderBy(
+    col("age").desc()
+).show(truncate=False)
+
+
+# ============================================================
+# Task 19: Parse JSON and count users by age.
+# ============================================================
+
+parsed_df.select(
+    "data.*"
+).groupBy(
+    "age"
+).count().orderBy(
+    col("age")
+).show()
+
+
+# ============================================================
+# Task 20: Parse JSON containing nested orders and calculate
+# the average order value for each user.
+# ============================================================
+
+orders_df.groupBy(
+    "id",
+    "name"
+).agg(
+    avg(
+        col("order.quantity") * col("order.price")
+    ).alias("average_order_value")
+).show(truncate=False)
