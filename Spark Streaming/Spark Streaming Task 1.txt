@@ -1,0 +1,102 @@
+# import needed libraries
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+from pyspark.sql.window import Window
+from pyspark.sql.types import *
+
+# create the sparksession
+spark = SparkSession.builder\
+	.appName("spark-file-streaming")\
+	.master("local[*]")\
+	.getOrCreate()
+
+
+# read the data from HDFS 
+df_batch = (
+    spark.read
+        .format("json")
+        .option("inferSchema", True)
+        .option("multiline", True)
+        .load("hdfs://localhost:9000/data/json_data/day1.json")
+)
+
+
+# print the schema of the batch data 
+df_batch.printSchema()
+
+
+# take the schema of the batch file used for streaming data 
+batch_schema = df_batch.schema
+
+
+# read streaming data 
+df_stream = (
+    spark.readStream
+    .format("json")
+    .schema(batch_schema)
+    .option("multiline", True)
+    .load("hdfs://localhost:9000/data/json_data/")
+)
+
+
+# check the schema of the streaming data 
+df_stream.printSchema()
+
+
+# save the output stream 
+checkpoint = "hdfs://localhost:9000/data/sink_append/checkpoint"
+path = "hdfs://localhost:9000/data/sink_append/output"
+
+
+query = (
+    df_stream.writeStream
+    .format("json")
+    .outputMode("append")
+    .trigger(availableNow=True)
+    .option("checkpointLocation", checkpoint)
+    .start(path)
+)
+
+query.awaitTermination()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
