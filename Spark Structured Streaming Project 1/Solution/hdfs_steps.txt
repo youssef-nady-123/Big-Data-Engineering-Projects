@@ -1,0 +1,7 @@
+hdfs dfs -mkdir /data
+hdfs dfs -mkdir /data/json
+hdfs dfs -put events_data.json /data/json
+
+hdfs dfs -ls -R /data/
+
+

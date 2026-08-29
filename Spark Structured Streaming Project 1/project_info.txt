@@ -1,0 +1,4 @@
+Real-Time JSON Ingestion Pipeline — HDFS to Multi-Format Sinks (PySpark, Structured Streaming)
+Built a fault-tolerant streaming pipeline ingesting JSON event logs from HDFS via PySpark Structured Streaming, applying schema validation and data-quality filtering.
+Implemented dual concurrent sinks (Parquet + JSON) with independent checkpointing, delivered as an executed notebook and production-ready spark-submit scripts.
+
